@@ -19,7 +19,7 @@ public class MasterListScreen {
         CatalogMediator mediator = CatalogMediator.getInstance();
 
         MasterListContract.Presenter presenter = new MasterListPresenter(mediator);
-        MasterListContract.Model model = new MasterListModel(data);
+        MasterListContract.Model model = new MasterListModel();
         presenter.injectModel(model);
         presenter.injectView(new WeakReference<>(view));
 

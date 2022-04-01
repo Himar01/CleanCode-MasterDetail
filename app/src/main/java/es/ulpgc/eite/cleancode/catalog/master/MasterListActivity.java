@@ -2,11 +2,17 @@ package es.ulpgc.eite.cleancode.catalog.master;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import es.ulpgc.eite.cleancode.catalog.R;
+import es.ulpgc.eite.cleancode.catalog.app.CategoryItem;
 
 public class MasterListActivity
         extends AppCompatActivity implements MasterListContract.View {
@@ -14,22 +20,23 @@ public class MasterListActivity
     public static String TAG = MasterListActivity.class.getSimpleName();
 
     private MasterListContract.Presenter presenter;
-
+    private ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_list);
-        getSupportActionBar().setTitle(R.string.app_name);
-
+        setContentView(R.layout.activity_master_list);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(getString(R.string.app_name));
+        }
 
         // do the setup
         MasterListScreen.configure(this);
-
+        listView = findViewById(R.id.master_list);
         if (savedInstanceState == null) {
             presenter.onStart();
-
-        } else {
-            presenter.onRestart();
         }
     }
 
@@ -49,34 +56,21 @@ public class MasterListActivity
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-
-        presenter.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        presenter.onDestroy();
-    }
-
-    @Override
-    public void onDataUpdated(MasterListViewModel viewModel) {
-        //Log.e(TAG, "onDataUpdated()");
+    public void displayMasterListData(MasterListViewModel viewModel) {
+        Log.e(TAG, "displayProductListData()");
 
         // deal with the data
-//      ((TextView) findViewById(R.id.data)).setText(viewModel.data);
+        listView.setAdapter(new MasterListAdapter(
+                        this, viewModel.products, new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        CategoryItem item = (CategoryItem) view.getTag();
+                        presenter.selectProductListData(item);
+                    }
+                })
+        );
     }
-
-
-    @Override
-    public void navigateToNextScreen() {
-        Intent intent = new Intent(this, MasterListActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public void injectPresenter(MasterListContract.Presenter presenter) {
         this.presenter = presenter;

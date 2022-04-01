@@ -1,43 +1,40 @@
 package es.ulpgc.eite.cleancode.catalog.master;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
+
+import es.ulpgc.eite.cleancode.catalog.app.CategoryItem;
+import es.ulpgc.eite.cleancode.catalog.app.ProductItem;
+import es.ulpgc.eite.cleancode.catalog.master.MasterListContract;
+import es.ulpgc.eite.cleancode.catalog.master.MasterListViewModel;
+import es.ulpgc.eite.cleancode.catalog.products.ProductListContract;
 
 public interface MasterListContract {
 
     interface View {
         void injectPresenter(Presenter presenter);
 
-        void onDataUpdated(MasterListViewModel viewModel);
-
-        void navigateToNextScreen();
+        void displayMasterListData(MasterListViewModel viewModel);
     }
 
     interface Presenter {
-        void injectView(WeakReference<View> view);
 
-        void injectModel(Model model);
+        void injectView(WeakReference<MasterListContract.View> view);
+        void injectModel(MasterListContract.Model model);
+        //void injectRouter(Router router);
+
+        void fetchProductListData();
+        void selectProductListData(ProductItem item);
 
         void onResume();
 
         void onStart();
 
-        void onRestart();
-
         void onBackPressed();
-
-        void onPause();
-
-        void onDestroy();
     }
 
     interface Model {
-        String getStoredData();
-
-        void onDataFromNextScreen(String data);
-
-        void onRestartScreen(String data);
-
-        void onDataFromPreviousScreen(String data);
+        List<CategoryItem> fetchProductListData();
     }
 
 }
