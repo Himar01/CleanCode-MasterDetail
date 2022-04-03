@@ -17,22 +17,21 @@ interface ProductListContract {
 
   interface Presenter {
     void injectView(WeakReference<View> view);
+
     void injectModel(Model model);
-    //void injectRouter(Router router);
-    void onResume();
+
     void fetchProductListData();
+
     void selectProductListData(ProductItem item);
+
+    void onResume();
   }
 
   interface Model {
     List<ProductItem> fetchProductListData();
+
     void createProductListData(int category);
+
     boolean listEmpty();
   }
-
-//  interface Router {
-//
-//    void navigateToProductDetailScreen();
-//    void passDataToProductDetailScreen(ProductItem item);
-//  }
 }

@@ -14,7 +14,6 @@ public class MasterListScreen {
         WeakReference<FragmentActivity> context =
                 new WeakReference<>((FragmentActivity) view);
 
-        String data = context.get().getString(R.string.app_name);
 
         CatalogMediator mediator = CatalogMediator.getInstance();
 

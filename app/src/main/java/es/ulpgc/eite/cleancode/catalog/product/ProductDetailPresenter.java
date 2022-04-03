@@ -13,7 +13,6 @@ public class ProductDetailPresenter implements ProductDetailContract.Presenter {
   private WeakReference<ProductDetailContract.View> view;
   private ProductDetailState state;
   private ProductDetailContract.Model model;
-  //private ProductDetailContract.Router router;
   private CatalogMediator mediator;
 
   public ProductDetailPresenter(CatalogMediator mediator) {

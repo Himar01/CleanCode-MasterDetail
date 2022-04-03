@@ -11,17 +11,19 @@ public interface MasterListContract {
 
     interface View {
         void injectPresenter(Presenter presenter);
+
         void displayMasterListData(MasterListViewModel viewModel);
+
         void navigateToProductListScreen();
     }
 
     interface Presenter {
-
         void injectView(WeakReference<MasterListContract.View> view);
+
         void injectModel(MasterListContract.Model model);
-        //void injectRouter(Router router);
 
         void fetchProductListData();
+
         void selectProductListData(CategoryItem item);
 
         void onResume();

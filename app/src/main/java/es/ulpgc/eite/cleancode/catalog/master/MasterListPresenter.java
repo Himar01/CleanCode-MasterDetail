@@ -27,17 +27,13 @@ public class MasterListPresenter implements MasterListContract.Presenter {
         Log.e(TAG, "onStart()");
 
         view.get().displayMasterListData(state);
-
     }
-
-
 
     @Override
     public void onResume() {
         Log.e(TAG, "onResume()");
 
         view.get().displayMasterListData(state);
-
     }
 
     @Override
@@ -46,14 +42,6 @@ public class MasterListPresenter implements MasterListContract.Presenter {
 
     private void passDataToProductListScreen(CategoryItem state) {
         mediator.setCategory(state);}
-
-/*    private void passStateToPreviousScreen(MasterListToPreviousState state) {
-        mediator.setPreviousMasterListScreenState(state);
-    }*/
-
-/*    private PreviousToMasterListState getStateFromPreviousScreen() {
-        return mediator.getPreviousMasterListScreenState();
-    }*/
 
     @Override
     public void injectView(WeakReference<MasterListContract.View> view) {
@@ -76,10 +64,9 @@ public class MasterListPresenter implements MasterListContract.Presenter {
 
     @Override
     public void selectProductListData(CategoryItem item) {
-        //router.passDataToProductDetailScreen(item);
+
         passDataToProductListScreen(item);
-        //router.navigateToProductDetailScreen();
+
         view.get().navigateToProductListScreen();
     }
-
 }

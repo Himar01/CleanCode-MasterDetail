@@ -32,27 +32,15 @@ public class MasterListModel implements MasterListContract.Model {
         itemList.add(item);
     }
 
-
     private CategoryItem createProduct(int position) {
         String content = "Category " + position;
 
         return new CategoryItem(
-                position, content, fetchProductDetails(position)
+                position, content
         );
-
     }
 
 
-    private String fetchProductDetails(int position) {
-        String content = "Details about Product:  " + position;
-        StringBuilder builder = new StringBuilder();
-        builder.append(content);
 
-        for (int index = 0; index < position; index++) {
-            builder.append("\nMore details information here.");
-        }
-
-        return builder.toString();
-    }
 
 }

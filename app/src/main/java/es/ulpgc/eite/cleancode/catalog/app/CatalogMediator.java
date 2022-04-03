@@ -48,8 +48,8 @@ public class CatalogMediator {
   public CategoryItem getCategory(){
     CategoryItem item = category;
     return item;
-    // TODO: ¿No es lo mismo 'return category;'?
-    // TODO: ¿Al hacer product = null, por que no se cambia item = null?, ¿No estan linkeados?
+    // TODO:  [Tutoria] ¿No es lo mismo 'return category;'?
+    // TODO: [Tutoria]¿Al hacer product = null, por que no se cambia item = null?, ¿No estan linkeados?
 
   }
   public void setProduct(ProductItem item) {

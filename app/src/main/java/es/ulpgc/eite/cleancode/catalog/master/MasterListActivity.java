@@ -47,15 +47,12 @@ public class MasterListActivity
     @Override
     protected void onResume() {
         super.onResume();
-
-        // load the data
         presenter.onResume();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
         presenter.onBackPressed();
     }
 

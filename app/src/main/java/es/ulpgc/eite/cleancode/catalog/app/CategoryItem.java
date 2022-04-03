@@ -4,17 +4,14 @@ public class CategoryItem {
 
     public final int id;
     public final String content;
-    public final String details;
 
-    public CategoryItem(int id, String content, String details) {
+    public CategoryItem(int id, String content) {
         this.id = id;
         this.content = content;
-        this.details = details;
     }
 
     @Override
     public String toString() {
-        Integer id = this.id;
-        return id.toString();
+        return content;
     }
 }
