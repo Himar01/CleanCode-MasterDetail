@@ -26,14 +26,14 @@ public class MasterListPresenter implements MasterListContract.Presenter {
     public void onStart() {
         Log.e(TAG, "onStart()");
 
-
+        //view.get().displayMasterListData(state);
     }
 
     @Override
     public void onResume() {
         Log.e(TAG, "onResume()");
 
-
+        //view.get().displayMasterListData(state);
     }
 
     @Override
