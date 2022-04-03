@@ -37,7 +37,6 @@ public class ProductListPresenter implements ProductListContract.Presenter {
         model.createProductListData(state.category);
       }
     }
-    view.get().displayProductListData(state);
   }
   @Override
   public void injectView(WeakReference<ProductListContract.View> view) {
@@ -49,10 +48,6 @@ public class ProductListPresenter implements ProductListContract.Presenter {
     this.model = model;
   }
 
-//  @Override
-//  public void injectRouter(ProductListContract.Router router) {
-//    this.router = router;
-//  }
 
   private void passDataToProductDetailScreen(ProductItem item) {
     mediator.setProduct(item);
