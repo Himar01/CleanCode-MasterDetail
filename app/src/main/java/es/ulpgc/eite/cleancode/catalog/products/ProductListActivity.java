@@ -44,11 +44,7 @@ public class ProductListActivity
 
     listView = findViewById(R.id.product_list);
 
-    /*
-    if(savedInstanceState == null) {
-      CatalogMediator.resetInstance();
-    }
-    */
+
 
     // do the setup
     ProductListScreen.configure(this);

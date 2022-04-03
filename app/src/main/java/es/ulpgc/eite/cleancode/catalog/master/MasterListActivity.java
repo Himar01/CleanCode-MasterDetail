@@ -28,16 +28,19 @@ public class MasterListActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master_list);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle(getString(R.string.app_name));
         }
 
-        // do the setup
-        MasterListScreen.configure(this);
         listView = findViewById(R.id.master_list);
+
+        MasterListScreen.configure(this);
+
         if (savedInstanceState == null) {
             presenter.onStart();
         }
