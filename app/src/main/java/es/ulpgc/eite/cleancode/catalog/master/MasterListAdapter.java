@@ -30,7 +30,7 @@ public class MasterListAdapter extends ArrayAdapter<CategoryItem> {
 
     @Override
     public int getCount() {
-        return itemList.size();
+        return itemList == null ? 0 : itemList.size();
     }
 
     @Override

@@ -14,6 +14,7 @@ import androidx.core.app.NavUtils;
 
 import es.ulpgc.eite.cleancode.catalog.R;
 import es.ulpgc.eite.cleancode.catalog.app.ProductItem;
+import es.ulpgc.eite.cleancode.catalog.master.MasterListActivity;
 import es.ulpgc.eite.cleancode.catalog.product.ProductDetailActivity;
 
 
@@ -37,6 +38,7 @@ public class ProductListActivity
     // Show the title in the action bar
     ActionBar actionBar = getSupportActionBar();
     if (actionBar != null) {
+      actionBar.setDisplayHomeAsUpEnabled(true);
       actionBar.setTitle(getString(R.string.title_product_list));
     }
 
@@ -53,6 +55,12 @@ public class ProductListActivity
 
     // do some work
     presenter.fetchProductListData();
+  }
+  @Override
+  public void onResume() {
+    Log.e(TAG,"onResume()");
+    super.onResume();
+    presenter.onResume();
   }
 
 
@@ -85,7 +93,7 @@ public class ProductListActivity
   public boolean onOptionsItemSelected(MenuItem item) {
     int id = item.getItemId();
     if (id == android.R.id.home) {
-      NavUtils.navigateUpFromSameTask(this);
+      navigateUpTo(new Intent(this, MasterListActivity.class));
       return true;
     }
     return super.onOptionsItemSelected(item);

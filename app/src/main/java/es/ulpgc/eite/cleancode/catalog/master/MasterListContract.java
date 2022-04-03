@@ -1,20 +1,18 @@
 package es.ulpgc.eite.cleancode.catalog.master;
 
+import android.view.MenuItem;
+
 import java.lang.ref.WeakReference;
 import java.util.List;
 
 import es.ulpgc.eite.cleancode.catalog.app.CategoryItem;
-import es.ulpgc.eite.cleancode.catalog.app.ProductItem;
-import es.ulpgc.eite.cleancode.catalog.master.MasterListContract;
-import es.ulpgc.eite.cleancode.catalog.master.MasterListViewModel;
-import es.ulpgc.eite.cleancode.catalog.products.ProductListContract;
 
 public interface MasterListContract {
 
     interface View {
         void injectPresenter(Presenter presenter);
-
         void displayMasterListData(MasterListViewModel viewModel);
+        void navigateToProductListScreen();
     }
 
     interface Presenter {
@@ -24,7 +22,7 @@ public interface MasterListContract {
         //void injectRouter(Router router);
 
         void fetchProductListData();
-        void selectProductListData(ProductItem item);
+        void selectProductListData(CategoryItem item);
 
         void onResume();
 

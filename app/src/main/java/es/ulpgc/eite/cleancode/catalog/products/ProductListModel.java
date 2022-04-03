@@ -6,19 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.ulpgc.eite.cleancode.catalog.app.ProductItem;
+import es.ulpgc.eite.cleancode.catalog.master.MasterListModel;
 
 public class ProductListModel implements ProductListContract.Model {
 
-  public static String TAG = ProductListModel.class.getSimpleName();
+  public static String TAG = MasterListModel.class.getSimpleName();
 
   private final List<ProductItem> itemList = new ArrayList<>();
   private final int COUNT = 20;
 
   public ProductListModel() {
     // Add some sample items
+  }
+  @Override
+  public void createProductListData(int category){
     for (int index = 1; index <= COUNT; index++) {
-      addProduct(createProduct(index));
+      addProduct(createProduct(category,index));
     }
+  }
+
+  @Override
+  public boolean listEmpty() {
+    return itemList.size()==0;
   }
 
   @Override
@@ -32,18 +41,18 @@ public class ProductListModel implements ProductListContract.Model {
   }
 
 
-  private ProductItem createProduct(int position) {
-    String content = "Product " + position;
+  private ProductItem createProduct(int category, int position) {
+    String content = "Product "+category+"." + position;
 
     return new ProductItem(
-        position, content, fetchProductDetails(position)
+        position, content, fetchProductDetails(category,position)
     );
 
   }
 
 
-  private String fetchProductDetails(int position) {
-    String content = "Details about Product:  " + position;
+  private String fetchProductDetails(int category, int position) {
+    String content = "Details about Product:  "+category+"." + position;
     StringBuilder builder = new StringBuilder();
     builder.append(content);
 

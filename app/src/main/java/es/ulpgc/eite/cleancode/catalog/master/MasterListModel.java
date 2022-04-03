@@ -34,7 +34,7 @@ public class MasterListModel implements MasterListContract.Model {
 
 
     private CategoryItem createProduct(int position) {
-        String content = "Product " + position;
+        String content = "Category " + position;
 
         return new CategoryItem(
                 position, content, fetchProductDetails(position)

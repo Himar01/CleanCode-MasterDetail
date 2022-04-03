@@ -3,6 +3,7 @@ package es.ulpgc.eite.cleancode.catalog.master;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -10,9 +11,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 
 import es.ulpgc.eite.cleancode.catalog.R;
 import es.ulpgc.eite.cleancode.catalog.app.CategoryItem;
+import es.ulpgc.eite.cleancode.catalog.products.ProductListActivity;
 
 public class MasterListActivity
         extends AppCompatActivity implements MasterListContract.View {
@@ -38,6 +41,7 @@ public class MasterListActivity
         if (savedInstanceState == null) {
             presenter.onStart();
         }
+        presenter.fetchProductListData();
     }
 
     @Override
@@ -61,16 +65,23 @@ public class MasterListActivity
 
         // deal with the data
         listView.setAdapter(new MasterListAdapter(
-                        this, viewModel.products, new View.OnClickListener() {
+                        this, viewModel.category, new View.OnClickListener() {
 
                     @Override
                     public void onClick(View view) {
-                        CategoryItem item = (CategoryItem) view.getTag();
-                        presenter.selectProductListData(item);
+                        CategoryItem category = (CategoryItem) view.getTag();
+                        presenter.selectProductListData(category);
                     }
                 })
         );
     }
+
+    @Override
+    public void navigateToProductListScreen() {
+        Intent intent = new Intent(this, ProductListActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void injectPresenter(MasterListContract.Presenter presenter) {
         this.presenter = presenter;

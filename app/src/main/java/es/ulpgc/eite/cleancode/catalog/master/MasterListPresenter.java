@@ -5,6 +5,7 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.cleancode.catalog.app.CatalogMediator;
+import es.ulpgc.eite.cleancode.catalog.app.CategoryItem;
 import es.ulpgc.eite.cleancode.catalog.app.ProductItem;
 
 public class MasterListPresenter implements MasterListContract.Presenter {
@@ -43,9 +44,8 @@ public class MasterListPresenter implements MasterListContract.Presenter {
     public void onBackPressed() {
     }
 
-    private void passDataToProductListScreen(ProductItem state) {
-        mediator.setProduct(state);
-    }
+    private void passDataToProductListScreen(CategoryItem state) {
+        mediator.setCategory(state);}
 
 /*    private void passStateToPreviousScreen(MasterListToPreviousState state) {
         mediator.setPreviousMasterListScreenState(state);
@@ -63,6 +63,23 @@ public class MasterListPresenter implements MasterListContract.Presenter {
     @Override
     public void injectModel(MasterListContract.Model model) {
         this.model = model;
+    }
+
+    @Override
+    public void fetchProductListData() {
+        Log.e(TAG, "fetchProductListData()");
+
+        // call the model
+        state.category = model.fetchProductListData();
+        view.get().displayMasterListData(state);
+    }
+
+    @Override
+    public void selectProductListData(CategoryItem item) {
+        //router.passDataToProductDetailScreen(item);
+        passDataToProductListScreen(item);
+        //router.navigateToProductDetailScreen();
+        view.get().navigateToProductListScreen();
     }
 
 }

@@ -19,13 +19,15 @@ interface ProductListContract {
     void injectView(WeakReference<View> view);
     void injectModel(Model model);
     //void injectRouter(Router router);
-
+    void onResume();
     void fetchProductListData();
     void selectProductListData(ProductItem item);
   }
 
   interface Model {
     List<ProductItem> fetchProductListData();
+    void createProductListData(int category);
+    boolean listEmpty();
   }
 
 //  interface Router {

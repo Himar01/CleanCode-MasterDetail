@@ -18,9 +18,6 @@ public class CatalogMediator {
 
   }
 
-  public static void resetInstance() {
-    INSTANCE = null;
-  }
 
 
   public static CatalogMediator getInstance() {
@@ -52,9 +49,9 @@ public class CatalogMediator {
     CategoryItem item = category;
     return item;
     // TODO: ¿No es lo mismo 'return category;'?
+    // TODO: ¿Al hacer product = null, por que no se cambia item = null?, ¿No estan linkeados?
+
   }
-
-
   public void setProduct(ProductItem item) {
     product = item;
   }

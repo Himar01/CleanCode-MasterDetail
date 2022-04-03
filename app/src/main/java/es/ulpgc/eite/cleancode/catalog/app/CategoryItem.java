@@ -14,6 +14,7 @@ public class CategoryItem {
 
     @Override
     public String toString() {
-        return content;
+        Integer id = this.id;
+        return id.toString();
     }
 }

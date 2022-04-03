@@ -5,8 +5,7 @@ import java.util.List;
 import es.ulpgc.eite.cleancode.catalog.app.ProductItem;
 
 public class ProductListViewModel {
-
+  public int category;
   public List<ProductItem> products;
-
 }
 
